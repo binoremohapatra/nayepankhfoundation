@@ -6,7 +6,7 @@
 
 import axios, { AxiosError } from 'axios';
 
-const BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:8080';
+const BASE_URL = import.meta.env.VITE_API_URL || 'https://nayepankhfoundation-dl7u.onrender.com';
 
 export interface Volunteer {
   id?: number;
