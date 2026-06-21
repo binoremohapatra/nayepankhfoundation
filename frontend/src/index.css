@@ -1,0 +1,316 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *, *::before, *::after { box-sizing: border-box; }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    @apply font-sans antialiased;
+    background-color: #FAF6EE;
+    color: #1C1C1C;
+  }
+}
+
+@layer components {
+
+  /* ── Cards ─────────────────────────────────────────── */
+  .card {
+    @apply rounded-3xl border transition-all duration-300 relative overflow-hidden;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-color: rgba(212, 226, 200, 0.6);
+    box-shadow: 0 8px 32px -8px rgba(31,58,46,0.08), inset 0 0 0 1px rgba(255,255,255,0.5);
+  }
+  .card:hover {
+    transform: translateY(-4px);
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 16px 48px -12px rgba(31,58,46,0.15), inset 0 0 0 1px rgba(255,255,255,0.8);
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: -100%;
+    width: 50%; height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    transform: skewX(-20deg);
+    transition: 0.7s;
+    pointer-events: none;
+  }
+  .card:hover::before {
+    left: 150%;
+  }
+
+  /* ── Buttons ─────────────────────────────────────────── */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm text-white cursor-pointer select-none transition-all duration-200;
+    background: linear-gradient(135deg, #3F6F52 0%, #2e6249 100%);
+    box-shadow: 0 4px 14px rgba(63,111,82,0.35), inset 0 1px 0 rgba(255,255,255,0.2);
+    padding: 0.75rem 1.75rem;
+  }
+  .btn-primary:hover:not(:disabled) {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(63,111,82,0.5), inset 0 1px 0 rgba(255,255,255,0.3);
+  }
+  .btn-primary:active { transform: translateY(0); }
+  .btn-primary:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    box-shadow: none;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm text-white cursor-pointer select-none transition-all duration-200;
+    background: linear-gradient(135deg, #D9A441 0%, #c48e33 100%);
+    box-shadow: 0 4px 14px rgba(217,164,65,0.35), inset 0 1px 0 rgba(255,255,255,0.3);
+    padding: 0.75rem 1.75rem;
+  }
+  .btn-gold:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 12px 28px rgba(217,164,65,0.5), inset 0 1px 0 rgba(255,255,255,0.4);
+  }
+
+  .btn-outline {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl font-semibold text-sm cursor-pointer select-none transition-all duration-200;
+    color: #1F3A2E;
+    border: 2px solid rgba(31,58,46,0.2);
+    background: transparent;
+    padding: 0.75rem 1.75rem;
+  }
+  .btn-outline:hover {
+    background: rgba(31,58,46,0.05);
+    border-color: rgba(31,58,46,0.4);
+    transform: translateY(-2px);
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl font-medium text-sm cursor-pointer transition-all duration-150;
+    color: rgba(31,58,46,0.6);
+    padding: 0.5rem 1rem;
+  }
+  .btn-ghost:hover {
+    color: #1F3A2E;
+    background: rgba(31,58,46,0.05);
+  }
+
+  /* ── Inputs ──────────────────────────────────────────── */
+  .input {
+    @apply w-full rounded-xl text-sm transition-all duration-200 bg-white;
+    padding: 0.75rem 1rem;
+    border: 1.5px solid #D4E2C8;
+    color: #1C1C1C;
+    outline: none;
+  }
+  .input::placeholder { color: rgba(107,114,128,0.5); }
+  .input:hover { border-color: rgba(63,111,82,0.4); }
+  .input:focus {
+    border-color: #3F6F52;
+    box-shadow: 0 0 0 3px rgba(63,111,82,0.15);
+  }
+
+  .input-label {
+    @apply block text-xs font-semibold uppercase tracking-widest mb-1.5;
+    color: rgba(31,58,46,0.7);
+    letter-spacing: 0.12em;
+  }
+
+  /* ── OTP cells ───────────────────────────────────────── */
+  .otp-cell {
+    @apply text-center text-2xl font-bold bg-white rounded-xl transition-all duration-150 font-mono;
+    width: 3rem;
+    height: 3.5rem;
+    border: 2px solid #D4E2C8;
+    color: #1C1C1C;
+    outline: none;
+  }
+  .otp-cell:focus {
+    border-color: #3F6F52;
+    box-shadow: 0 0 0 4px rgba(63,111,82,0.15);
+  }
+  .otp-cell:not([value=""]) {
+    background: #EEF3E8;
+    border-color: #3F6F52;
+  }
+
+  /* ── Status badges ───────────────────────────────────── */
+  .badge-pending {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background: #FEF3C7;
+    color: #92400E;
+    border: 1px solid #FDE68A;
+  }
+  .badge-approved {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #A7F3D0;
+  }
+  .badge-rejected {
+    @apply inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-semibold;
+    background: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #FECACA;
+  }
+
+  /* ── Sidebar nav ─────────────────────────────────────── */
+  .sidebar {
+    @apply w-64 shrink-0 flex-col relative z-20;
+    background: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border-right: 1px solid rgba(212, 226, 200, 0.6);
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .sidebar { display: flex; }
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 rounded-xl font-medium text-sm transition-all duration-150;
+    padding: 0.625rem 1rem;
+    color: rgba(31,58,46,0.55);
+  }
+  .nav-link:hover {
+    color: #1F3A2E;
+    background: rgba(31,58,46,0.05);
+  }
+
+  .nav-link-active {
+    @apply flex items-center gap-3 rounded-xl font-semibold text-sm;
+    padding: 0.625rem 1rem;
+    color: #1F3A2E;
+    background: rgba(31,58,46,0.08);
+  }
+
+  /* ── Typography helpers ──────────────────────────────── */
+  .section-eyebrow {
+    @apply block text-xs font-bold uppercase;
+    letter-spacing: 0.18em;
+    color: #D9A441;
+  }
+  .section-heading {
+    @apply text-3xl font-extrabold leading-tight;
+    font-family: 'Fraunces', Georgia, serif;
+    color: #1F3A2E;
+  }
+  .section-sub {
+    @apply text-base leading-relaxed;
+    color: #6B7280;
+  }
+
+  /* ── Chat bubbles ────────────────────────────────────── */
+  .bubble-user {
+    @apply rounded-2xl text-sm text-white;
+    border-top-right-radius: 4px;
+    padding: 0.625rem 1rem;
+    max-width: 80%;
+    background: linear-gradient(135deg, #3F6F52, #2e6249);
+  }
+  .bubble-ai {
+    @apply rounded-2xl text-sm;
+    border-top-left-radius: 4px;
+    padding: 0.625rem 1rem;
+    max-width: 80%;
+    background: #EEF3E8;
+    color: #1C1C1C;
+    border: 1px solid #D4E2C8;
+  }
+
+  /* ── Skeleton ────────────────────────────────────────── */
+  .skeleton {
+    background: linear-gradient(90deg, #EEF3E8 25%, #D4E2C8 50%, #EEF3E8 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.8s linear infinite;
+  }
+
+  /* ── Toasts ──────────────────────────────────────────── */
+  .toast-success {
+    @apply fixed top-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 rounded-2xl text-sm font-semibold text-white;
+    background: linear-gradient(135deg, #3F6F52, #1F3A2E);
+    box-shadow: 0 12px 40px rgba(31,58,46,0.3);
+  }
+  .toast-error {
+    @apply fixed top-5 left-1/2 -translate-x-1/2 z-50 flex items-center gap-3 px-5 py-3 rounded-2xl text-sm font-semibold text-white;
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    box-shadow: 0 12px 40px rgba(220,38,38,0.3);
+  }
+}
+
+/* ── Keyframes ───────────────────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position:  200% 0; }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes organic-float {
+  0% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg); }
+  33% { border-radius: 70% 30% 50% 50% / 30% 30% 70% 70%; transform: translate(-10px, 15px) rotate(3deg); }
+  66% { border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%; transform: translate(10px, -15px) rotate(-3deg); }
+  100% { border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes stagger-up {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(217, 164, 65, 0.7); }
+  70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(217, 164, 65, 0); }
+  100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(217, 164, 65, 0); }
+}
+
+@keyframes soundwave {
+  from { transform: scaleY(0.3); }
+  to   { transform: scaleY(1); }
+}
+
+/* ── Animation utility classes ───────────────────────────── */
+.animate-fade-up   { animation: fadeUp  0.55s ease-out both; }
+.animate-fade-in   { animation: fadeIn  0.4s  ease-out both; }
+.animate-float     { animation: float   4s    ease-in-out infinite; }
+.animate-organic   { animation: organic-float 12s ease-in-out infinite; }
+.animate-soundwave { animation: soundwave 0.4s ease-in-out infinite alternate; }
+.animate-pulse-ring { animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+
+/* ── Shapes ──────────────────────────────────────────────── */
+.organic-shape {
+  border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
+}
+.organic-card {
+  border-radius: 32px 32px 32px 8px;
+}
+
+/* ── Reduced motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
