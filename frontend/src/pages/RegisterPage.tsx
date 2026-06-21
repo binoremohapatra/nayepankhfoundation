@@ -668,6 +668,7 @@ export default function RegisterPage() {
                 onMouseEnter={e => { if (!isTyping && inputText.trim()) (e.currentTarget as HTMLElement).style.transform = 'scale(1.1)'; }}
                 onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = 'scale(1)'; }}
               >
+                <Send size={18} color="#FFF" style={{ marginLeft: '-2px' }} />
               </button>
             </div>
             <div ref={chatEndRef} />
