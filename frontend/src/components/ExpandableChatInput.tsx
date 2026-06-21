@@ -194,7 +194,7 @@ const ExpandableChatInput: React.FC<ExpandableChatInputProps> = ({
               value={val}
               onChange={(e) => setVal(e.target.value)}
               onKeyDown={handleKeyDown}
-              placeholder={isRecording ? "Stealth Mic Active... (Speak freely)" : "Message Maeve..."}
+              placeholder={isRecording ? "Stealth Mic Active... (Speak freely)" : "Message Nayepankh Foundation..."}
               rows={1}
               className="w-full bg-transparent border-none outline-none font-medium text-white placeholder-white/30 resize-none py-3 [&::-webkit-scrollbar]:hidden"
               style={{ maxHeight: '150px' }}

@@ -24,6 +24,11 @@ function cleanText(text: string): string {
 function getBestVoice(): SpeechSynthesisVoice | null {
   const voices = window.speechSynthesis.getVoices();
   const preferred = [
+    'Google हिन्दी',
+    'Microsoft Swara',
+    'Microsoft Swara Desktop',
+    'Microsoft Neerja',
+    'Microsoft Neerja Desktop',
     'Microsoft Zira',
     'Microsoft Zira Desktop',
     'Microsoft Heera',
